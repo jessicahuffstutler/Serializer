@@ -68,7 +68,7 @@ public class Serializer {
             JsonParser parser = new JsonParser();
             return parser.parse(fileContents, Responder.class);
         } catch (Exception e) {
-            System.out.println("There was an error loading the file");
+            System.out.println("No previous file was found.");
             return null;
         }
     }
