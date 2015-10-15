@@ -1,3 +1,4 @@
+import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
 import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
 
@@ -24,8 +25,8 @@ public class Serializer {
             responder.enterPageNumbers(); //page numbers
             responder.enterYearPublished(); //year published
         } else {
-            responder = new Responder();
-            System.out.println("Update your answers to the questions below:");
+            System.out.println(String.format("Title: %s | Author: %s | Type: %s | Number of Pages: %d | Year Published: %d", responder.title, responder.author, responder.type, responder.pageNumbers, responder.yearPublished));
+            System.out.println("Review your answers above and update your answers to the questions below:");
             responder.enterTitle(); //title
             responder.enterAuthor(); //author
             responder.enterType(); //fiction/nonfiction
@@ -52,7 +53,7 @@ public class Serializer {
             fw.write(contentToSave);
             fw.close();
         } catch (Exception e) {
-
+            System.out.println("Save not successful.");
         }
     }
 
@@ -64,12 +65,13 @@ public class Serializer {
             char[] contents = new char[fileSize];
             fr.read(contents);
             String fileContents = new String(contents);
-            System.out.println(fileContents);
+            //System.out.println(fileContents); ->this shows the contents exactly as they appear in the save.json file. commenting out to create better viewability above.
             JsonParser parser = new JsonParser();
             return parser.parse(fileContents, Responder.class);
         } catch (Exception e) {
-            System.out.println("No previous file was found.");
+            //System.out.println("No previous file was found."); -> this prints every time it runs for the first time.
             return null;
         }
+
     }
 }

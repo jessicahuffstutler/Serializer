@@ -8,8 +8,8 @@ public class Responder {
     int pageNumbers; //how many page numbers does the book have?
     int yearPublished; //what year was the book published?
 
-    public Responder() { //we may not need this
-    } //we may not need this
+    public Responder() { //default constructor
+    } //default constructor
 
     void enterTitle() {
         System.out.println("What is the title of the book?");
